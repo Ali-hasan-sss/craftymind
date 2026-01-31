@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 import os
 from datetime import datetime
@@ -220,6 +220,48 @@ def register():
 def logout():
     session.clear()
     return redirect(url_for('login'))
+
+
+# =======================
+# خدمة الصور (تجنب 404 بسبب أسماء الملفات العربية على Linux/Render)
+# =======================
+def _static_path_from_db(path):
+    """تحويل مسار من DB مثل /static/images/... إلى مسار نسبي داخل static"""
+    if not path:
+        return None
+    path = path.strip().replace('\\', '/')
+    if path.startswith('/static/'):
+        path = path.replace('/static/', '', 1)
+    elif path.startswith('static/'):
+        path = path.replace('static/', '', 1)
+    if '..' in path:
+        return None
+    return path
+
+
+@app.route('/media/category/<int:cat_id>')
+def media_category(cat_id):
+    cat = Category.query.get_or_404(cat_id)
+    rel = _static_path_from_db(cat.image)
+    if not rel:
+        return '', 404
+    full_path = os.path.join(app.static_folder, rel)
+    if not os.path.isfile(full_path):
+        return '', 404
+    return send_from_directory(app.static_folder, rel)
+
+
+@app.route('/media/product/<int:product_id>')
+def media_product(product_id):
+    product = Product.query.get_or_404(product_id)
+    rel = _static_path_from_db(product.image)
+    if not rel:
+        return '', 404
+    full_path = os.path.join(app.static_folder, rel)
+    if not os.path.isfile(full_path):
+        return '', 404
+    return send_from_directory(app.static_folder, rel)
+
 
 # =======================
 # Routes
