@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 style="margin-bottom:20px; color:#4b6cb7;">طلباتي</h2>
+
+{% if orders %}
+<table style="width:100%; border-collapse: collapse; margin-bottom:20px;">
+    <thead>
+        <tr style="background:#f0f0f0;">
+            <th style="padding:10px; text-align:center;">صورة</th>
+            <th style="padding:10px; text-align:center;">المنتج</th>
+            <th style="padding:10px; text-align:center;">السعر</th>
+            <th style="padding:10px; text-align:center;">الكمية</th>
+            <th style="padding:10px; text-align:center;">الإجمالي</th>
+            <th style="padding:10px; text-align:center;">الحالة</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr style="border-bottom:1px solid #ddd; text-align:center;">
+            <td style="padding:10px;">
+                {% if order.product.image %}
+                <img src="{{ order.product.image }}" alt="{{ order.product_name }}" style="width:80px; height:80px; object-fit:cover; border-radius:5px;">
+                {% else %}
+                -
+                {% endif %}
+            </td>
+            <td style="padding:10px;">{{ order.product_name }}</td>
+            <td style="padding:10px;">{{ order.price }}$</td>
+            <td style="padding:10px;">{{ order.quantity }}</td>
+            <td style="padding:10px;">{{ order.total_price }}$</td>
+            <td style="padding:10px;">{{ order.status }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p style="text-align:center; font-size:16px; color:#555;">لم تقم بأي طلبات بعد.</p>
+<a href="{{ url_for('index') }}">
+    <button style="padding:10px 20px; background:#4b6cb7; color:white; border:none; border-radius:5px; cursor:pointer;">
+        العودة للتسوق
+    </button>
+</a>
+{% endif %}
+
+{% endblock %}

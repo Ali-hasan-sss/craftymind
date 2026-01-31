@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 style="margin-bottom:20px; color:#4b6cb7;">طلب مباشر</h2>
+
+<div style="max-width:400px; margin:0 auto; text-align:center; border:1px solid #ddd; border-radius:10px; padding:20px;">
+    <img src="{{ product.image }}" alt="{{ product.name }}" style="width:100%; height:200px; object-fit:cover; border-radius:10px;">
+    <h3 style="margin-top:15px;">{{ product.name }}</h3>
+    <p style="font-size:14px; color:#555;">{{ product.description }}</p>
+    <p style="font-weight:bold; color:#333;">السعر: {{ product.price }}$</p>
+
+    <form action="{{ url_for('order', product_id=product.id) }}" method="POST" style="margin-top:20px;">
+        <label style="display:block; margin-bottom:10px;">الكمية:</label>
+        <input type="number" name="quantity" value="1" min="1" style="width:80px; padding:8px; margin-bottom:15px;">
+        <br>
+        <button type="submit" style="background:#4b6cb7; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;">
+            تأكيد الطلب
+        </button>
+    </form>
+</div>
+{% endblock %}

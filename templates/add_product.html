@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>إضافة عمل يدوي</h2>
+<form method="post">
+    <input name="name" placeholder="اسم العمل" required><br>
+    <textarea name="description" placeholder="الوصف" required></textarea><br>
+    <input type="number" name="price" placeholder="السعر" step="0.01" required><br>
+    <input name="materials" placeholder="المواد، مثال: خيوط, خرز" required><br>
+    <input name="image" placeholder="رابط الصورة" required><br>
+
+    <label>التصنيف:</label>
+    <select name="category_id" required>
+        <option value="" disabled selected>اختر التصنيف</option>
+        {% for c in categories %}
+        <option value="{{ c.id }}">{{ c.name }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <button type="submit">إضافة</button>
+</form>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>مولد الأفكار الذكي</h2>
+<form method="post">
+<input name="materials" placeholder="المواد المتوفرة لديك، مثال: خيوط, خرز">
+<button>اقترح أفكار</button>
+</form>
+<ul>
+{% for idea in suggestions %}
+<li>{{ idea }}</li>
+{% endfor %}
+</ul>
+{% endblock %}

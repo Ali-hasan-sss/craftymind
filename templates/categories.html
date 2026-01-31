@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 style="margin-bottom:20px; color:#4b6cb7;">التصنيفات</h2>
+
+<div class="categories-container" style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center;">
+    {% for c in categories %}
+    <div class="card" style="width:250px; transition: transform 0.3s;">
+        <img src="{{ c.image }}" alt="{{ c.name }}" style="width:100%; height:180px; object-fit:cover; border-radius:10px;">
+        <h3 style="margin-top:10px;">{{ c.name }}</h3>
+        <a href="/category/{{ c.id }}"><button style="background:#4b6cb7; color:white; border:none; padding:10px 15px; border-radius:5px; cursor:pointer; margin-top:10px;">عرض الأعمال</button></a>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+    // تأثير hover على البطاقات
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        card.addEventListener('mouseover', () => {
+            card.style.transform = 'scale(1.05)';
+            card.style.boxShadow = '0 8px 20px rgba(0,0,0,0.2)';
+        });
+        card.addEventListener('mouseout', () => {
+            card.style.transform = 'scale(1)';
+            card.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
+        });
+    });
+</script>
+{% endblock %}

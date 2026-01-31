@@ -1,0 +1,46 @@
+
+{% block content %}
+
+<!-- الهيدر -->
+<header style="background: linear-gradient(135deg, #4b6cb7, #182848); padding:15px 0; color:white;">
+    <div class="header-container" style="max-width:1200px; margin:auto; display:flex; align-items:center; justify-content:space-between; gap:15px;">
+        <div class="logo-box">
+            <img src="/static/images/logo.jpg" alt="CraftyMind Logo" style="width:70px; height:70px; border-radius:50%; object-fit:cover; border:3px solid #f5a623; background:white;">
+        </div>
+        <h1 style="margin:0;">منصة <span class="brand-name" style="color:#f5a623; font-weight:700;">CraftyMind</span> للأعمال اليدوية</h1>
+        <nav>
+            <a href="/" style="color:white; margin:0 10px; font-weight:600; text-decoration:none;">الرئيسية</a>
+            <a href="/add-product" style="color:white; margin:0 10px; font-weight:600; text-decoration:none;">إضافة عمل</a>
+            <a href="/ideas" style="color:white; margin:0 10px; font-weight:600; text-decoration:none;">اقتراحات ذكية</a>
+            <a href="/chatbot" style="color:white; margin:0 10px; font-weight:600; text-decoration:none;">المساعد الذكي</a>
+        </nav>
+    </div>
+</header>
+
+<h2 style="text-align:center; color:#4b6cb7; margin-bottom:20px;">المساعد الذكي</h2>
+
+<div class="chat-wrapper" style="width:100%; max-width:550px; height:600px; margin:30px auto; display:flex; flex-direction:column; border-radius:12px; background:#fff; box-shadow:0 8px 25px rgba(0,0,0,0.15); overflow:hidden;">
+    <div class="chat-container" id="chat-box" style="flex:1; padding:15px; display:flex; flex-direction:column; gap:12px; overflow-y:auto; background:#f0f4f8; scroll-behavior:smooth; box-shadow: inset 0 4px 6px rgba(0,0,0,0.05);">
+        <!-- رسالة ترحيب افتراضية -->
+        <div class="chat-message bot-msg" style="background:#e0e0e0; color:#333; align-self:flex-start; text-align:left; box-shadow:0 2px 8px rgba(0,0,0,0.05); max-width:80%; padding:12px 18px; border-radius:20px; font-size:15px; word-wrap:break-word;">
+            🌸 مرحبًا بك في CraftyMind!<br>
+            أنا مساعدك الذكي للأعمال اليدوية.<br>
+            اسألني عن تصنيف، مادة، أو فكرة وسأساعدك فورًا 😊
+        </div>
+    </div>
+
+    <div class="chat-input" style="display:flex; padding:10px; border-top:1px solid #ddd; background:#fff;">
+        <input type="text" id="user-message" placeholder="اكتب سؤالك هنا" style="flex:1; padding:12px 15px; border-radius:25px; border:1px solid #ccc; font-size:15px; outline:none;" onkeypress="if(event.key==='Enter'){sendMessage();}">
+        <button onclick="sendMessage()" style="margin-left:10px; padding:12px 20px; border-radius:25px; border:none; background-color:#f5a623; color:#182848; font-weight:600; cursor:pointer;">إرسال</button>
+    </div>
+</div>
+
+<!-- تضمين ملف JS -->
+<script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+
+<!-- فوتر -->
+<footer style="text-align:center; margin-top:30px; color:#555;">
+    &copy; 2026 منصة CraftyMind - جميع الحقوق محفوظة
+</footer>
+
+{% endblock %}

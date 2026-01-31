@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 style="margin-bottom:20px; color:#4b6cb7;">الأعمال اليدوية</h2>
+
+<div class="products-container" style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center;">
+    {% for p in products %}
+    <div class="card" style="width:250px; transition: transform 0.3s; border:1px solid #ddd; border-radius:10px; padding:10px; text-align:center;">
+        <img src="{{ p.image }}" alt="{{ p.name }}" style="width:100%; height:180px; object-fit:cover; border-radius:10px;">
+        <h3 style="margin-top:10px;">{{ p.name }}</h3>
+        <p style="font-size:14px; color:#555;">{{ p.description }}</p>
+        <p style="font-weight:bold; color:#333;">السعر: {{ p.price }}$</p>
+
+        <!-- Form لإضافة المنتج للسلة -->
+        <form action="{{ url_for('add_to_cart', product_id=p.id) }}" method="POST" style="margin-top:10px;">
+            <input type="number" name="quantity" value="1" min="1" style="width:60px; padding:5px; margin-right:10px;">
+            <button type="submit" style="background:#4b6cb7; color:white; border:none; padding:8px 12px; border-radius:5px; cursor:pointer;">
+                أضف إلى السلة 🛒
+            </button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- تأثير hover على البطاقات -->
+<script>
+const cards = document.querySelectorAll('.card');
+cards.forEach(card => {
+    card.addEventListener('mouseover', () => {
+        card.style.transform = 'scale(1.05)';
+        card.style.boxShadow = '0 8px 20px rgba(0,0,0,0.2)';
+    });
+    card.addEventListener('mouseout', () => {
+        card.style.transform = 'scale(1)';
+        card.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
+    });
+});
+</script>
+{% endblock %}

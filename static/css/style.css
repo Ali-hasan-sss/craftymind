@@ -1,0 +1,151 @@
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+}
+
+h1, h2, h3 {
+    color: #4b6cb7;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* الهيدر */
+header {
+    background: linear-gradient(135deg, #4b6cb7, #182848);
+    padding: 15px 0;
+    color: white;
+}
+
+/* تنظيم الهيدر */
+.header-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+/* صندوق اللوغو */
+.logo-box img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;      /* يجعل اللوغو دائري */
+    object-fit: cover;
+    border: 3px solid #f5a623;
+    background: white;
+}
+
+/* اسم المنصة */
+.brand-name {
+    color: #f5a623;
+    font-weight: 700;
+}
+
+/* الروابط */
+nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: #f5a623;
+}
+
+
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: inline-block;
+    vertical-align: top;
+    width: 250px;
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+button, input, select, textarea {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+button {
+    background-color: #4b6cb7;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #182848;
+}
+
+/* Chat container */
+.chat-container {
+    flex: 1;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    overflow-y: auto;
+    background: #f0f4f8;
+    scroll-behavior: smooth;
+
+    /* Add a subtle inner shadow to indicate scroll area */
+    box-shadow: inset 0 4px 6px rgba(0,0,0,0.05);
+}
+
+/* Custom Scrollbar */
+.chat-container::-webkit-scrollbar {
+    width: 10px;           /* Scrollbar width */
+}
+
+.chat-container::-webkit-scrollbar-track {
+    background: #e1e8f0;   /* Track color */
+    border-radius: 5px;
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #4b6cb7, #182848); /* Gradient thumb */
+    border-radius: 5px;
+    border: 2px solid #e1e8f0; /* Add padding effect */
+}
+
+.chat-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #f5a623, #f76b1c); /* Hover effect */
+}
+.user-msg { 
+    background-color: #4b6cb7; 
+    color:#fff; 
+    align-self:flex-end; 
+    text-align:right;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Subtle shadow */
+    transition: transform 0.2s;
+}
+.user-msg:hover { transform: scale(1.02); }
+
+.bot-msg  { 
+    background-color:#e0e0e0; 
+    color:#333; 
+    align-self:flex-start; 
+    text-align:left; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
