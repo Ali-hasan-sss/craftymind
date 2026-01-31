@@ -92,21 +92,21 @@ def add_default_data():
         return
 
     categories = [
-        ("خياطة", "/static/images/categories/خياطة.jpg"),
-            ("خشب", "/static/images/categories/خشب.jpg"),
-            ("خرز", "/static/images/categories/خرز.jpg"),
-            ("رسم", "/static/images/categories/رسم.jpg"),
-            ("طلاء", "/static/images/categories/طلاء.jpg"),
-            ("صابون يدوي", "/static/images/categories/صابون.jpg"),
-            ("شموع", "/static/images/categories/شموع.jpg"),
-            ("أشغال ورقية", "/static/images/categories/ورق.jpg"),
-            ("مجوهرات", "/static/images/categories/مجوهرات.jpg"),
-            ("نسيج", "/static/images/categories/نسيج.jpg"),
-            ("فخار", "/static/images/categories/فخار.jpg"),
-            ("سيراميك", "/static/images/categories/سيراميك.jpg"),
-            ("حقائب", "/static/images/categories/حقائب.jpg"),
-            ("ملابس", "/static/images/categories/ملابس.jpg"),
-            ("إكسسوارات", "/static/images/categories/إكسسوارات.jpg")
+        ("خياطة", "/static/images/categories/category-1.jpg"),
+        ("خشب", "/static/images/categories/category-2.jpg"),
+        ("خرز", "/static/images/categories/category-3.jpg"),
+        ("رسم", "/static/images/categories/category-4.jpg"),
+        ("طلاء", "/static/images/categories/category-5.jpg"),
+        ("صابون يدوي", "/static/images/categories/category-6.jpg"),
+        ("شموع", "/static/images/categories/category-7.jpg"),
+        ("أشغال ورقية", "/static/images/categories/category-8.jpg"),
+        ("مجوهرات", "/static/images/categories/category-9.jpg"),
+        ("نسيج", "/static/images/categories/category-10.jpg"),
+        ("فخار", "/static/images/categories/category-11.jpg"),
+        ("سيراميك", "/static/images/categories/category-12.jpg"),
+        ("حقائب", "/static/images/categories/category-13.jpg"),
+        ("ملابس", "/static/images/categories/category-14.jpg"),
+        ("إكسسوارات", "/static/images/categories/category-15.jpg"),
     ]
 
     for c in categories:
@@ -116,14 +116,14 @@ def add_default_data():
     cat = Category.query.all()
 
     products = [
-        ("وسادة مزخرفة", "وسادة قماشية مزخرفة بخيوط متعددة الألوان.", 50, "خيوط، قماش", "/static/images/products/وسادة.jpg", cat[0].id),
-            ("حقيبة خشبية صغيرة", "حقيبة خشبية صغيرة للزينة أو التخزين.", 120, "خشب، دهان", "/static/images/products/حقيبة.jpg", cat[1].id),
-            ("قلادة خرز ملونة", "قلادة مصنوعة من خرز ملون متنوع.", 30, "خرز، سلك معدني", "/static/images/products/قلادة.jpg", cat[2].id),
-            ("لوحة زيتية صغيرة", "لوحة زيتية رائعة للتزيين.", 200, "ألوان زيتية، قماش", "/static/images/products/لوحة.jpg", cat[3].id),
-            ("صابون معطر", "صابون طبيعي برائحة الزهور.", 25, "زيوت طبيعية، صودا كاوية", "/static/images/products/صابون.jpg", cat[5].id),
-            ("شمعة معطرة", "شمعة يدوية معطرة بألوان متنوعة.", 40, "شمع، عطور", "/static/images/products/شمعة.jpg", cat[6].id),
-            ("دفتر أشغال ورقية", "دفتر لتدوين وتصميم أشغال ورقية.", 15, "ورق، غلاف كرتوني", "/static/images/products/دفتر.jpg", cat[7].id),
-            ("خاتم فضي", "خاتم فضي أنيق للزينة.", 75, "فضة", "/static/images/products/خاتم.jpg", cat[8].id)
+        ("وسادة مزخرفة", "وسادة قماشية مزخرفة بخيوط متعددة الألوان.", 50, "خيوط، قماش", "/static/images/products/product-1.jpg", cat[0].id),
+        ("حقيبة خشبية صغيرة", "حقيبة خشبية صغيرة للزينة أو التخزين.", 120, "خشب، دهان", "/static/images/products/product-2.jpg", cat[1].id),
+        ("قلادة خرز ملونة", "قلادة مصنوعة من خرز ملون متنوع.", 30, "خرز، سلك معدني", "/static/images/products/product-3.jpg", cat[2].id),
+        ("لوحة زيتية صغيرة", "لوحة زيتية رائعة للتزيين.", 200, "ألوان زيتية، قماش", "/static/images/products/product-4.jpg", cat[3].id),
+        ("صابون معطر", "صابون طبيعي برائحة الزهور.", 25, "زيوت طبيعية، صودا كاوية", "/static/images/products/product-5.jpg", cat[5].id),
+        ("شمعة معطرة", "شمعة يدوية معطرة بألوان متنوعة.", 40, "شمع، عطور", "/static/images/products/product-6.jpg", cat[6].id),
+        ("دفتر أشغال ورقية", "دفتر لتدوين وتصميم أشغال ورقية.", 15, "ورق، غلاف كرتوني", "/static/images/products/product-7.jpg", cat[7].id),
+        ("خاتم فضي", "خاتم فضي أنيق للزينة.", 75, "فضة", "/static/images/products/product-8.jpg", cat[8].id),
     ]
 
     for p in products:
@@ -242,25 +242,26 @@ def _static_path_from_db(path):
 @app.route('/media/category/<int:cat_id>')
 def media_category(cat_id):
     cat = Category.query.get_or_404(cat_id)
+    # محاولة المسار من DB أولاً، ثم الاسم الإنجليزي حسب ID (يعمل مع DB قديم أو جديد)
     rel = _static_path_from_db(cat.image)
-    if not rel:
-        return '', 404
-    full_path = os.path.join(app.static_folder, rel)
-    if not os.path.isfile(full_path):
-        return '', 404
-    return send_from_directory(app.static_folder, rel)
+    if rel and os.path.isfile(os.path.join(app.static_folder, rel)):
+        return send_from_directory(app.static_folder, rel)
+    rel = f'images/categories/category-{cat_id}.jpg'
+    if os.path.isfile(os.path.join(app.static_folder, rel)):
+        return send_from_directory(app.static_folder, rel)
+    return '', 404
 
 
 @app.route('/media/product/<int:product_id>')
 def media_product(product_id):
     product = Product.query.get_or_404(product_id)
     rel = _static_path_from_db(product.image)
-    if not rel:
-        return '', 404
-    full_path = os.path.join(app.static_folder, rel)
-    if not os.path.isfile(full_path):
-        return '', 404
-    return send_from_directory(app.static_folder, rel)
+    if rel and os.path.isfile(os.path.join(app.static_folder, rel)):
+        return send_from_directory(app.static_folder, rel)
+    rel = f'images/products/product-{product_id}.jpg'
+    if os.path.isfile(os.path.join(app.static_folder, rel)):
+        return send_from_directory(app.static_folder, rel)
+    return '', 404
 
 
 # =======================
